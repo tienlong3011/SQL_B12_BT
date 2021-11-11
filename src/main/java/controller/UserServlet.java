@@ -17,7 +17,6 @@ import java.util.List;
 
 @WebServlet(name = "UserServlet", urlPatterns = "/users")
 public class UserServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
     private UserDAO userDAO;
 
     public void init() {
@@ -70,12 +69,31 @@ public class UserServlet extends HttpServlet {
                 case "searchCountry":
                     showSearchByCountry(request,response);
                     break;
+                case "sort":
+                    sortListUser(request,response);
+                    break;
                 default:
                     listUser(request, response);
                     break;
             }
         } catch (SQLException ex) {
             throw new ServletException(ex);
+        }
+    }
+
+    private void sortListUser(HttpServletRequest request, HttpServletResponse response) {
+        List<User>userLists = userDAO.sortListUser();
+        RequestDispatcher dispatcher;
+        if(userLists == null) {
+            dispatcher = request.getRequestDispatcher("error-404.jsp");
+        }else {
+            request.setAttribute("listUser",userLists);
+            dispatcher = request.getRequestDispatcher("user/list.jsp");
+        }
+        try {
+            dispatcher.forward(request,response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
         }
     }
 
