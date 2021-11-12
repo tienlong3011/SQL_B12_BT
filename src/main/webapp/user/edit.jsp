@@ -54,6 +54,16 @@
                 </td>
             </tr>
             <tr>
+                <th>Type:</th>
+                <td>
+                    <select name="type">
+                        <c:forEach items='${requestScope["typeList"]}' var="t">
+                            <option value="${t.id}">${t.nameType}</option>
+                        </c:forEach>
+                    </select>
+                </td>
+            </tr>
+            <tr>
                 <td colspan="2" align="center">
                     <input type="submit" value="Save"/>
                 </td>

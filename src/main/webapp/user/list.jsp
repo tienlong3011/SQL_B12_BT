@@ -14,7 +14,7 @@
 <body>
 <center>
     <h1>
-        <a href="/users">User Management</a>
+        <a href="/users" style="border: none; color: red; text-decoration: none" >User Management</a>
     </h1>
     <h2>
         <a href="/users?action=create">Add New User</a>
@@ -28,9 +28,10 @@
         <caption><h2>List of Users</h2></caption>
         <tr>
             <th>ID</th>
-            <th><a href="/users?action=sort">Name</a></th>
+            <th><a style="border: none; color: black; text-decoration: none" href="/users?action=sort">Name</a></th>
             <th>Email</th>
             <th>Country</th>
+            <th>Type</th>
             <th>Actions</th>
         </tr>
         <c:forEach var="user" items="${listUser}">
@@ -39,6 +40,7 @@
                 <td><c:out value="${user.name}"/></td>
                 <td><c:out value="${user.email}"/></td>
                 <td><c:out value="${user.country}"/></td>
+                <td><c:out value="${user.getType().nameType}"/></td>
                 <td>
                     <a href="/users?action=edit&id=${user.id}">Edit</a>
                     <a href="/users?action=delete&id=${user.id}">Delete</a>
