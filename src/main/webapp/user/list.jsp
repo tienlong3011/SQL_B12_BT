@@ -13,7 +13,9 @@
 </head>
 <body>
 <center>
-    <h1>User Management</h1>
+    <h1>
+        <a href="/users">User Management</a>
+    </h1>
     <h2>
         <a href="/users?action=create">Add New User</a>
     </h2>
@@ -43,7 +45,6 @@
                 </td>
             </tr>
         </c:forEach>
-    </table>
 </div>
 </body>
 </html>
